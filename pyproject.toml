@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "etl-dados-empresas-publicas"
+version = "0.1.0"
+description = ""
+authors = DarthGomes
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+polars = "^1.21.0"
+httpx = "^0.28.1"
+tqdm = "^4.67.1"
+blue = "^0.9.1"
+chardet = "^5.2.0"
+isort = "^6.0.0"
+datetime = "^5.5"
+python-dateutil = "^2.9.0.post0"
+backoff = "^2.2.1"
+
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.14.1"
+ruff = "^0.9.4"
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.isort]
+profile = "black"
+line_length = 79
+extend_skip = ['migrations']
+
+[tool.blue]
+extend-exclude = '(migrations/)'
+
+[tool.taskipy.tasks]
+lint = 'ruff . && blue --check . --diff && isort --check . --diff'
+format = 'blue .  && isort .'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

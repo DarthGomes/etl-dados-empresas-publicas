@@ -1,0 +1,4 @@
+def file_path(path):
+    print(f'{path}, hello world')
+
+file_path('oi')
